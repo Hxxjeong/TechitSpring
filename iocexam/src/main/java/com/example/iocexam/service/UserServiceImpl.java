@@ -13,6 +13,11 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
+    // setter 주입의 경우 (UserDao가 final이 아닐 때)
+/*    public UserDao setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }*/
+
     @Override
     public void joinUser(User user) {
         // 회원가입을 위한 로직

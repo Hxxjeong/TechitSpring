@@ -21,6 +21,11 @@ public class UserConfig {
     @Bean
     public UserService userService(UserDao userDao) {
         return new UserServiceImpl(userDao);
+
+        // setter 주입하는 경우
+/*        UserServiceImpl userService = new UserServiceImpl();
+        userService.setUserDao(userDao);
+        return userService;*/
     }
 
     @Bean
@@ -29,5 +34,8 @@ public class UserConfig {
     }
 
     // 2. ComponentScan
+    // DAO, Service, Controller에 Component 명시
     // @ComponentScan("com.example.iocexam") 어노테이션 사용
+
+    // 기본은 생성자 주입이기 때문에 setter나 필드 주입을 사용하려면 @Autowired 어노테이션 필요
 }
