@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor  // 기본 생성자
 @AllArgsConstructor // 모든 파라미터를 받는 생성자
 public class User {
     private Long id;
