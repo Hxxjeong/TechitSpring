@@ -20,8 +20,8 @@ public class UserDao {
     @PostConstruct
     public void init() {
         simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
-                .withTableName("users")
-                .usingGeneratedKeyColumns("id");
+                .withTableName("users") // 테이블명
+                .usingGeneratedKeyColumns("id");    // PK
     }
 
     public User createUser(User user) {
