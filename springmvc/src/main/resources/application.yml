@@ -2,5 +2,8 @@ spring:
   application:
     name: springmvc
 
-# ?? ?? 80?? ?? ? ?? ???? ?? ??
-
+# message property 설정
+  messages:
+    basename: messages
+    encoding: utf-8
+    cache-duration: 0

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 th:text="${list}"></h2>
+</body>
+<!-- 목록으로 출력 -->
+<ul>
+    <li th:each="product:${products}" th:text="${product.name} + ' - ' + ${product.price}"></li>
+</ul>
+
+<!-- 테이블로 출력 -->
+<table>
+    <tr>
+        <th>id</th>
+        <th>상품명</th>
+        <th>가격</th>
+    </tr>
+    <tr th:each="product:${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+    </tr>
+</table>
+<div th:include="common/footer :: footer"></div>
+</html>
