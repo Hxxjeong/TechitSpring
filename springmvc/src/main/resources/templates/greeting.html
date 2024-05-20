@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<!-- thymeleaf 설정 -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting</title>
+</head>
+<body>
+<h2 th:text="'hello, ' + ${name} + '!'">hello</h2>
+<div th:include="common/footer :: footer"></div>
+</body>
+</html>
