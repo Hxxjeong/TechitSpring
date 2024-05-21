@@ -63,4 +63,12 @@ public class ExamController {
         model.addAttribute("users", users);
         return "user";
     }
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        List<String> items = Arrays.asList("item 1", "item 2", "item 3", "item 4");
+        model.addAttribute("items", items);
+
+        return "list";
+    }
 }

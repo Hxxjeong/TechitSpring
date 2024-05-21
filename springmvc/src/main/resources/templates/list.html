@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<h2>List Example</h2>
+<ul>
+    <!-- status 변수 사용하여 인덱스 조건 설정 -->
+    <li th:each="item, stat:${items}"
+    th:if="${stat.index>=2 and stat.index<=3}"
+    th:text="${item}"></li>
+</ul>
+</body>
+</html>
