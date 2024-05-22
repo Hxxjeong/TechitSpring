@@ -7,3 +7,9 @@ spring:
     basename: messages
     encoding: utf-8
     cache-duration: 0
+
+# 기존 whitelabel page 제거
+server:
+  error:
+    whitelabel:
+      enabled: false
