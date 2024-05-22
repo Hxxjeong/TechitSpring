@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Visit Counter</title>
+</head>
+<body>
+<h2>세션을 이용한 방문 횟수</h2>
+<!-- Session scope에서 값을 찾도록 명시 -->
+<p>당신은 <span th:text="${session.visitCount}"></span>번째 방문자입니다. (HttpSession)</p>
+
+<!-- model에서 받아올 떄 -->
+<p>당신은 <span th:text="${visitCount}"></span>번째 방문자입니다. (Model)</p>
+
+<!-- 어노테이션을 이용했을 때 -->
+<p>당신은 <span th:text="${visitCount2}"></span>번째 방문자입니다. (Annotation)</p>
+
+<!-- 어노테이션 사용 시 -->
+<a th:href="@{/resetVisit}">방문 횟수 초기화 (Annotation)</a><br>
+
+<!-- HttpSession 사용 시 -->
+<a th:href="@{/resetVisit2}">방문 횟수 초기화 (HttpSesion)</a>
+</body>
+</html>
