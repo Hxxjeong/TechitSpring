@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>친구 수정</title>
+</head>
+<body>
+<h2>친구 수정</h2>
+<form method="post" th:action="@{/friends/edit}" th:object="${friend}">
+    <!-- 서버에만 id값을 보내기 위한 hidden -->
+    <input type="hidden" th:field="*{id}">
+
+    <label for="name">name: </label>
+    <input type="text" id="name" th:field="*{name}" required>
+
+    <label for="email">email: </label>
+    <input type="text" id="email" th:field="*{email}" required>
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>
