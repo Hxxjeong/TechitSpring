@@ -16,8 +16,23 @@ public class UserMain {
 //        log.info("Create user: " + user1.getName());
 //        log.info("user email: {}", user1.getEmail());
 
+        // find
         log.info("------ findUser() ------");
         User findUser = userDAO.findUser(1L);
         log.info("Found user: {}", findUser.getName());
+
+        // update
+//        User user = new User();
+//        user.setId(1L);
+//        user.setName("hong");
+//        user.setEmail("hong@gmail.com");
+//
+//        userDAO.updateUser(user);
+
+        // delete
+        User user2 = new User();
+        user2.setId(1L);
+
+        userDAO.deleteUser(user2);
     }
 }
