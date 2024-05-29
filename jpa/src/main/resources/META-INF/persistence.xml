@@ -12,6 +12,17 @@
         <class>com.example.jpa.Student</class>
         <class>com.example.jpa.Book</class>
         <class>com.example.jpa.Author</class>
+        <class>com.example.jpa.Employee</class>
+        <class>com.example.jpa.Project</class>
+        <class>com.example.jpa.Person</class>
+        <class>com.example.jpa.Passport</class>
+        <class>com.example.jpa.Car</class>
+        <class>com.example.jpa.Car2</class>
+        <class>com.example.jpa.Car3</class>
+        <class>com.example.jpa.Truck</class>
+        <class>com.example.jpa.Truck2</class>
+        <class>com.example.jpa.Truck3</class>
+        <class>com.example.jpa.Company</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampledb"/>
