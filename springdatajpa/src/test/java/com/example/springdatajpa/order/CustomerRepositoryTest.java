@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.jdbc.SqlGroup;
 
 import java.util.List;
 
@@ -66,5 +69,27 @@ class CustomerRepositoryTest {
             Long count = (Long) result[1];
             log.info("고객 이름: {}, 주문 수: {}", customer.getName(), count);
         });
+    }
+
+    @Test
+    void lastOrder() {
+        List<Object[]> orders = customerRepository.findLastOrder();
+        orders.forEach(result -> {
+            Customer customer = (Customer) result[0];
+            Order order = (Order) result[1];
+            log.info("고객 이름: {}, 최근 주문 날짜: {}", customer.getName(), order.getDate());
+        });
+    }
+
+    @Test
+    // sql 파일
+    @SqlGroup({
+            @Sql(value = "classpath:db/test.sql",
+                    config = @SqlConfig(encoding = "utf-8", separator = ";", commentPrefix = "--"),
+                    executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    })
+    void olderThanAvg() {
+        List<Customer> customers = customerRepository.findCustomerOlderThanAvg();
+        customers.forEach(c -> log.info("고객 이름: {}, 나이: {}", c.getName(), c.getAge()));
     }
 }

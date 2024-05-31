@@ -18,4 +18,12 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     // 각 고객과 고객의 주문 수 조회
     @Query("select c, count(o) from Customer c left join c.orders o group by c")
     List<Object[]> findOrderByCustomer();
+
+    // 고객의 세부 정보와 그들의 가장 최근 주문 조회
+    @Query("select c, o from Customer c join c.orders o where o.date = (select max(o2.date) from Order o2 where o2.customer = c)")
+    List<Object[]> findLastOrder();
+
+    // 평균 나이보다 많은 고객 조회
+    @Query("select c from Customer c where c.age > (select avg(c2.age) from Customer c2)")
+    List<Customer> findCustomerOlderThanAvg();
 }
