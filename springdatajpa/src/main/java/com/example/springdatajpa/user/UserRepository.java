@@ -21,4 +21,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("delete from User u where u.email = :email")
     void deleteByEmail(@Param("email") String email);
+
+    // native SQL을 사용한 사용자 조회 (email로 찾기)
+    @Query(value = "select * from jpa_user where email like %?1%", nativeQuery = true)
+    List<User> findByEmailNative(String email);
+
+    // native SQL을 사용한 사용자 조회 (name으로 찾기)
+    @Query(value = "select name, email from jpa_user where name like %:name%", nativeQuery = true)
+    List<Object[]> findUserByNameNative(@Param("name") String name);
 }

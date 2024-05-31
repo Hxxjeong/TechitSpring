@@ -1,6 +1,8 @@
 package com.example.springdatajpa.user;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional // test에서는 기본 rollback
 @Rollback(value = false)
 class UserRepositoryTest {
+    private final Logger log = LoggerFactory.getLogger(UserRepositoryTest.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -67,5 +72,21 @@ class UserRepositoryTest {
                 .toList();
 
         assertThat(userEmails).doesNotContain("kim@gmail.com");
+    }
+
+    @Test
+    void findUserNative() {
+        List<User> users = userRepository.findByEmailNative("park@gmail.com");
+        assertThat(users).extracting(User::getName).contains("park");
+    }
+
+    @Test
+    void findUser() {
+        List<Object[]> users = userRepository.findUserByNameNative("j");
+        List<UserDto> userDtos = users.stream()
+                .map(result -> new UserDto((String) result[0], (String) result[1]))
+                .collect(Collectors.toList());
+
+        userDtos.forEach(userDto -> log.info("사용자: {}, 이메일: {}", userDto.getName(), userDto.getEmail()));
     }
 }
