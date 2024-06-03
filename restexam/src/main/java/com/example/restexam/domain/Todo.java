@@ -1,0 +1,27 @@
+package com.example.restexam.domain;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "todos")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class Todo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String todo;
+    private boolean done;
+
+    // 초기 todo
+    public Todo(String todo) {
+        this.todo = todo;
+        this.done = false;
+    }
+}
