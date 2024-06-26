@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: securityexam
+
+  # 초기 user와 비밀번호 설정
+  security:
+    user:
+      name: user
+      password: 1234
