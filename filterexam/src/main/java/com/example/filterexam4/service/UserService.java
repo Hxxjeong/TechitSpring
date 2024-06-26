@@ -28,7 +28,7 @@ public class UserService {
     }
 
     // 회원 정보 조회
-    public User findUser(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 }

@@ -4,7 +4,6 @@ import com.example.filterexam4.auth.filter.UserContext;
 import com.example.filterexam4.entity.User;
 import com.example.filterexam4.service.UserService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ public class UserController {
     public String login(@ModelAttribute("user") User user,
                         HttpServletResponse response) {
         // 유저 확인
-        User findUser = userService.findUser(user.getUsername());
+        User findUser = userService.findByUsername(user.getUsername());
 
         if(findUser != null && user.getPassword().equals(findUser.getPassword())) {
             Cookie cookie = new Cookie("auth", user.getUsername());
@@ -52,9 +51,10 @@ public class UserController {
     // 회원 정보
     @GetMapping("/info")
     public String info() {
-        User user = UserContext.getUser();
-        if(user != null) return "info";
-        else return "redirect:/loginform";
+//        User user = UserContext.getUser();
+//        if(user != null) return "info";
+//        else return "redirect:/loginform";
+        return "info";
     }
 
     @GetMapping("/logout")
