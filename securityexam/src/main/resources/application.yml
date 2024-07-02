@@ -8,6 +8,25 @@ spring:
 #      name: user
 #      password: 1234
 
+# OAuth2 설정
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: ${clientId}
+            client-secret: ${clientSecret}
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: GitHub
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: id
+
+
   datasource:
     url: jdbc:mysql://localhost:3306/liondb
     username: ${username}

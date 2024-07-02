@@ -40,6 +40,9 @@ dependencies {
 
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
+    // OAuth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compileOnly 'org.projectlombok:lombok'
