@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+<h1>WebSocket Echo!!</h1>
+<input type="text" id="message" placeholder="메시지를 입력하세요."/>
+<button onclick="sendMessage()">send</button>
+<p id="response"></p>
+
+<script>
+    const ws = new WebSocket("ws://localhost:8080/ws");
+
+    ws.onmessage = (event) => {
+        document.getElementById("response").innerText = event.data;
+    };
+
+    const sendMessage = () => {
+        const message = document.getElementById("message").value;
+        ws.send(message);
+    };
+</script>
+</body>
+</html>
