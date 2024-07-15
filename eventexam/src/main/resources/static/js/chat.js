@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://localhost:8080/ws");
+const ws = new WebSocket("ws://" + window.location.host + "/ws");
 
 ws.onmessage = (event) => {
     const chatMessage = document.getElementById("chatMessages");
