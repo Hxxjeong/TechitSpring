@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub User Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .repo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .repo-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .repo-item a {
+            text-decoration: none;
+            color: #0366d6;
+        }
+        .repo-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>GitHub User Details</h1>
+<input type="text" id="username" placeholder="Enter GitHub username">
+<button id="fetchDetails">Fetch Details</button>
+
+<div class="result" id="result"></div>
+<script>
+    $(document).ready(function(){
+        $('#fetchDetails').click(function(){
+            const username = $('#username').val();
+            if(username) {
+                $.ajax({
+                    url: `/github/${username}/all`,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#result').html(data);
+                    },
+                    error: function() {
+                        alert('Failed to fetch details');
+                    }
+                });
+            } else {
+                alert('Please enter a username');
+            }
+        });
+    });
+</script>
+</body>
+</html>
